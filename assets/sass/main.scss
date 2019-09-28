@@ -1,0 +1,24 @@
+
+@import "reset";
+@import "variables";
+@import "header";
+@import "filter";
+@import "listings";
+
+
+*, html, body{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: $offWhite;
+}
+
+#contentArea{
+    overflow: auto;
+    width: 100%;
+    // background: black;
+    min-height: 100vh;
+}
+
