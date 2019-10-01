@@ -9,6 +9,87 @@ webpackJsonp([0],{
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+var listingsData = [{
+    address: '2034 Grand Ave',
+    city: 'Portland',
+    state: 'OR',
+    bedrooms: 3,
+    price: 220000,
+    floorspace: 2000,
+    furnished: 'furnished',
+    extras: ['elevator', 'gym'],
+    homeType: 'townHome',
+    img: 'https://cdngeneral.rentcafe.com/dmslivecafe/3/548638/yard-portland-or-interior-photo%20(6).jpg?crop=(0,41.312499999999744,300,166)&cropxunits=300&cropyunits=200&quality=85&scale=both&'
+}, {
+    address: '1515 Bridgeport St',
+    city: 'Vancouver',
+    state: 'WA',
+    bedrooms: 1,
+    price: 300000,
+    floorspace: 2000,
+    furnished: 'unfurnished',
+    extras: ['elevator', 'gym'],
+    homeType: 'condo',
+    img: 'https://www.wweek.com/resizer/P4RBZU4qq1PydaeXDRllYpmdflc=/1200x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/wweek/wp-content/uploads/2017/03/16144604/Cumberland_Apartments_-_Portland_Oregon.jpg'
+}, {
+    address: '1999 Washington',
+    city: 'Gresham',
+    state: 'OR',
+    bedrooms: 2,
+    price: 150000,
+    floorspace: 1500,
+    furnished: 'furnished',
+    extras: ['elevator', 'gym'],
+    homeType: 'apartment',
+    img: 'http://4.bp.blogspot.com/-sdNt2H_HijQ/UTczJTqkKQI/AAAAAAAAJp4/fSRvB57GYjs/s640/Imagen+141.jpg'
+}, {
+    address: '1776 East Ave',
+    city: 'Orange',
+    state: 'CA',
+    bedrooms: 4,
+    price: 750000,
+    floorspace: 1850,
+    furnished: 'unfurnished',
+    extras: ['elevator', 'gym'],
+    homeType: 'apartment',
+    img: 'https://images1.apartments.com/i2/o3yLIWy8fECW6YnOJ0FSyyQqrdzzW4UgLzTCqO1QgAM/111/cadence-apartments-portland-or-primary-photo.jpg'
+}, {
+    address: '9865 Sunnyside',
+    city: 'Anaheim',
+    state: 'CA',
+    bedrooms: 1,
+    price: 300000,
+    floorspace: 1200,
+    furnished: 'furnished',
+    extras: ['elevator', 'gym'],
+    homeType: 'apartment',
+    img: 'https://images1.apartments.com/i2/Ai79gx3kIZm30f9KEvAi0DPk1d8EpAndO7L69B-7S0w/117/image.jpg'
+}, {
+    address: '1985 Delorean',
+    city: 'Newport',
+    state: 'OR',
+    bedrooms: 2,
+    price: 220000,
+    floorspace: 2000,
+    furnished: 'unfurnished',
+    extras: ['elevator', 'gym'],
+    homeType: 'room',
+    img: 'http://media.bizj.us/view/img/10223816/the-cameron-medium-1*750xx1200-675-0-113.jpg'
+}];
+
+exports.default = listingsData;
+
+/***/ }),
+
+/***/ 231:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -127,11 +208,6 @@ var Filter = function (_Component) {
                         'select',
                         { name: 'filters bedrooms',
                             className: 'bedrooms' },
-                        _react2.default.createElement(
-                            'option',
-                            null,
-                            '2 br'
-                        ),
                         _react2.default.createElement(
                             'option',
                             { value: '0' },
@@ -266,7 +342,7 @@ exports.default = Filter;
 
 /***/ }),
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -353,7 +429,7 @@ exports.default = Header;
 
 /***/ }),
 
-/***/ 232:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -389,10 +465,126 @@ var Listings = function (_Component) {
         _this.state = {
             name: 'Michael'
         };
+        _this.loopListings = _this.loopListings.bind(_this);
         return _this;
     }
 
     _createClass(Listings, [{
+        key: 'loopListings',
+        value: function loopListings() {
+            var listingsData = this.props.listingsData;
+
+
+            return listingsData.map(function (listing, index) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'listing', key: index },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'listingImg',
+                            style: { background: 'url("' + listing.img + '") no-repeat center center',
+                                backgroundSize: 'cover' } },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'address' },
+                            listing.address
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'details' },
+                            _react2.default.createElement('div', { className: 'userImg' }),
+                            _react2.default.createElement(
+                                'div',
+                                { className: ' userDetails' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'userName' },
+                                    'Nina Smith'
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'postDate' },
+                                    '09/23/2019'
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'listingDetails' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'floorspace' },
+                                    _react2.default.createElement('i', { className: 'fas fa-home' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        ' ',
+                                        listing.floorspace,
+                                        ' ft\xB2'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'furnishing' },
+                                    _react2.default.createElement('i', { className: 'fas fa-couch' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        ' ',
+                                        listing.furnished
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'bedrooms' },
+                                    _react2.default.createElement('i', { className: 'fas fa-bed' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        ' ',
+                                        listing.bedrooms,
+                                        ' bedrooms'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'viewBtn' },
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: '#' },
+                                        'View Listings'
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'bottomInfo' },
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            '$',
+                            listing.price,
+                            ' (USD)'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'bottomLocation' },
+                            _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                ' ',
+                                listing.city,
+                                ', ',
+                                listing.state
+                            )
+                        )
+                    )
+                );
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -439,382 +631,7 @@ var Listings = function (_Component) {
                 _react2.default.createElement(
                     'section',
                     { className: 'listingResults' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'listing' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'listingImg' },
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'address' },
-                                'Montgomery Dr.'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'details' },
-                                _react2.default.createElement('div', { className: 'userImg' }),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: ' userDetails' },
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'userName' },
-                                        'Nina Smith'
-                                    ),
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'postDate' },
-                                        '09/23/2019'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'listingDetails' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'floorspace' },
-                                        _react2.default.createElement('i', { className: 'fas fa-home' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 1000 ft\xB2'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'furnishing' },
-                                        _react2.default.createElement('i', { className: 'fas fa-couch' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' unfirnished'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'bedrooms' },
-                                        _react2.default.createElement('i', { className: 'fas fa-bed' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 3 bedrooms'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'viewBtn' },
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            'View Listings'
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'bottomInfo' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                '$1,000 / month (USD)'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'bottomLocation' },
-                                _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
-                                _react2.default.createElement(
-                                    'span',
-                                    null,
-                                    ' Portland, Oregon'
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'listing' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'listingImg' },
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'address' },
-                                'Montgomery Dr.'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'details' },
-                                _react2.default.createElement('div', { className: 'userImg' }),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: ' userDetails' },
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'userName' },
-                                        'Nina Smith'
-                                    ),
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'postDate' },
-                                        '09/23/2019'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'listingDetails' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'floorspace' },
-                                        _react2.default.createElement('i', { className: 'fas fa-home' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 1000 ft\xB2'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'furnishing' },
-                                        _react2.default.createElement('i', { className: 'fas fa-couch' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' unfirnished'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'bedrooms' },
-                                        _react2.default.createElement('i', { className: 'fas fa-bed' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 3 bedrooms'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'viewBtn' },
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            'View Listings'
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'bottomInfo' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                '$1,000 / month (USD)'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'bottomLocation' },
-                                _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
-                                _react2.default.createElement(
-                                    'span',
-                                    null,
-                                    ' Portland, Oregon'
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'listing' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'listingImg' },
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'address' },
-                                'Montgomery Dr.'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'details' },
-                                _react2.default.createElement('div', { className: 'userImg' }),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: ' userDetails' },
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'userName' },
-                                        'Nina Smith'
-                                    ),
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'postDate' },
-                                        '09/23/2019'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'listingDetails' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'floorspace' },
-                                        _react2.default.createElement('i', { className: 'fas fa-home' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 1000 ft\xB2'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'furnishing' },
-                                        _react2.default.createElement('i', { className: 'fas fa-couch' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' unfirnished'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'bedrooms' },
-                                        _react2.default.createElement('i', { className: 'fas fa-bed' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 3 bedrooms'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'viewBtn' },
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            'View Listings'
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'bottomInfo' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                '$1,000 / month (USD)'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'bottomLocation' },
-                                _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
-                                _react2.default.createElement(
-                                    'span',
-                                    null,
-                                    ' Portland, Oregon'
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'listing' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'listingImg' },
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'address' },
-                                'Montgomery Dr.'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'details' },
-                                _react2.default.createElement('div', { className: 'userImg' }),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: ' userDetails' },
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'userName' },
-                                        'Nina Smith'
-                                    ),
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'postDate' },
-                                        '09/23/2019'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'listingDetails' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'floorspace' },
-                                        _react2.default.createElement('i', { className: 'fas fa-home' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 1000 ft\xB2'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'furnishing' },
-                                        _react2.default.createElement('i', { className: 'fas fa-couch' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' unfirnished'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'bedrooms' },
-                                        _react2.default.createElement('i', { className: 'fas fa-bed' }),
-                                        _react2.default.createElement(
-                                            'span',
-                                            null,
-                                            ' 3 bedrooms'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'viewBtn' },
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            'View Listings'
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'bottomInfo' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                '$1,000 / month (USD)'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'bottomLocation' },
-                                _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
-                                _react2.default.createElement(
-                                    'span',
-                                    null,
-                                    ' Portland, Oregon'
-                                )
-                            )
-                        )
-                    )
+                    this.loopListings()
                 ),
                 _react2.default.createElement(
                     'section',
@@ -877,7 +694,7 @@ exports.default = Listings;
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -893,19 +710,19 @@ var _reactDom = __webpack_require__(101);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _header = __webpack_require__(231);
+var _header = __webpack_require__(232);
 
 var _header2 = _interopRequireDefault(_header);
 
-var _filter = __webpack_require__(230);
+var _filter = __webpack_require__(231);
 
 var _filter2 = _interopRequireDefault(_filter);
 
-var _listings = __webpack_require__(232);
+var _listings = __webpack_require__(233);
 
 var _listings2 = _interopRequireDefault(_listings);
 
-var _listingsData = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./listingsData.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _listingsData = __webpack_require__(230);
 
 var _listingsData2 = _interopRequireDefault(_listingsData);
 
@@ -928,7 +745,14 @@ var App = function (_Component) {
 
         _this.state = {
             name: 'Michael',
-            listingsData: listingsData
+            listingsData: _listingsData2.default,
+            city: 'all',
+            homeType: 'all',
+            bedrooms: 0,
+            minPrice: 0,
+            maxPrice: 10000000,
+            minFloorspace: 0,
+            maxFloorspace: 50000
         };
         return _this;
     }
@@ -936,6 +760,7 @@ var App = function (_Component) {
     _createClass(App, [{
         key: 'render',
         value: function render() {
+            console.log(this.state);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -944,7 +769,7 @@ var App = function (_Component) {
                     'section',
                     { id: 'contentArea' },
                     _react2.default.createElement(_filter2.default, null),
-                    _react2.default.createElement(_listings2.default, null)
+                    _react2.default.createElement(_listings2.default, { listingsData: this.state.listingsData, globalState: this.state })
                 )
             );
         }
@@ -961,4 +786,4 @@ _reactDom2.default.render(_react2.default.createElement(App, null), app);
 
 /***/ })
 
-},[236]);
+},[237]);

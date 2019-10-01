@@ -6,6 +6,7 @@ var listingsData = [
         bedrooms: 3,
         price: 220000,
         floorspace: 2000,
+        furnished: 'furnished',
         extras: [
             'elevator',
             'gym'
@@ -20,6 +21,7 @@ var listingsData = [
         bedrooms: 1,
         price: 300000,
         floorspace: 2000,
+        furnished: 'unfurnished',
         extras: [
             'elevator',
             'gym'
@@ -34,6 +36,7 @@ var listingsData = [
         bedrooms: 2,
         price: 150000,
         floorspace: 1500,
+        furnished: 'furnished',
         extras: [
             'elevator',
             'gym'
@@ -48,6 +51,7 @@ var listingsData = [
         bedrooms: 4,
         price: 750000,
         floorspace: 1850,
+        furnished: 'unfurnished',
         extras: [
             'elevator',
             'gym'
@@ -62,6 +66,7 @@ var listingsData = [
         bedrooms: 1,
         price: 300000,
         floorspace: 1200,
+        furnished: 'furnished',
         extras: [
             'elevator',
             'gym'
@@ -76,6 +81,7 @@ var listingsData = [
         bedrooms: 2,
         price: 220000,
         floorspace: 2000,
+        furnished: 'unfurnished',
         extras: [
             'elevator',
             'gym'

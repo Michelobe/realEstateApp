@@ -37,7 +37,6 @@ export default class Filter extends Component {
                     </select>
                     <select name = "filters bedrooms" 
                             className = "bedrooms">
-                            <option>2 br</option>
                         <option value = "0">All</option>
                         <option value = "1">1+ br</option>
                         <option value = "2">2+ br</option>
