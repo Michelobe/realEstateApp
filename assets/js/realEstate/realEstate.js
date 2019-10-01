@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from './header.js';
 import Filter from './filter.js';
 import Listings from './listings.js';
+import ListingsData from './listingsData.js';
 
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
     constructor () {
         super();
         this.state = {
-            name: 'Michael'
+            name: 'Michael',
+            listingsData: listingsData
         };
     }
     render () {

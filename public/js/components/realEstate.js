@@ -55,12 +55,42 @@ var Filter = function (_Component) {
                     ),
                     _react2.default.createElement(
                         'select',
-                        { name: 'filters neighborhood',
-                            className: 'neighborhood' },
+                        { name: 'filters city',
+                            className: 'city' },
                         _react2.default.createElement(
                             'option',
-                            null,
-                            'Ridgewood'
+                            { value: 'all' },
+                            'All'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'Portland' },
+                            'Portland'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'Vancouver' },
+                            'Vancouver'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'Gresham' },
+                            'Gresham'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'Orange' },
+                            'Orange'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'Anaheim' },
+                            'Anaheim'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'Newport' },
+                            'Newport'
                         )
                     ),
                     _react2.default.createElement(
@@ -69,8 +99,28 @@ var Filter = function (_Component) {
                             className: 'houseType' },
                         _react2.default.createElement(
                             'option',
-                            null,
-                            'Ranch'
+                            { value: 'all' },
+                            'All'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'apartment' },
+                            'Apartment'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'condo' },
+                            'Condo'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'townHome' },
+                            'Town Home'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'Room' },
+                            'Room'
                         )
                     ),
                     _react2.default.createElement(
@@ -81,6 +131,26 @@ var Filter = function (_Component) {
                             'option',
                             null,
                             '2 br'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '0' },
+                            'All'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '1' },
+                            '1+ br'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '2' },
+                            '2+ br'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '3' },
+                            '3+ br'
                         )
                     ),
                     _react2.default.createElement(
@@ -835,6 +905,10 @@ var _listings = __webpack_require__(232);
 
 var _listings2 = _interopRequireDefault(_listings);
 
+var _listingsData = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./listingsData.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _listingsData2 = _interopRequireDefault(_listingsData);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -853,7 +927,8 @@ var App = function (_Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
         _this.state = {
-            name: 'Michael'
+            name: 'Michael',
+            listingsData: listingsData
         };
         return _this;
     }

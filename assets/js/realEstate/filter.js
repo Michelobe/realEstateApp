@@ -17,17 +17,31 @@ export default class Filter extends Component {
                     <h4>Filter</h4>
 
 
-                    <select name = "filters neighborhood" 
-                            className = "neighborhood">
-                        <option>Ridgewood</option>
+                    <select name = "filters city" 
+                            className = "city">
+                        <option value = "all">All</option>
+                        <option value = "Portland">Portland</option>
+                        <option value = "Vancouver">Vancouver</option>
+                        <option value = "Gresham">Gresham</option>
+                        <option value = "Orange">Orange</option>
+                        <option value = "Anaheim">Anaheim</option>
+                        <option value = "Newport">Newport</option>
                     </select>
                     <select name = "filters houseType" 
                             className = "houseType">
-                        <option>Ranch</option>
+                        <option value = "all">All</option>
+                        <option value = "apartment">Apartment</option>
+                        <option value = "condo">Condo</option>
+                        <option value = "townHome">Town Home</option>
+                        <option value = "Room">Room</option>
                     </select>
                     <select name = "filters bedrooms" 
                             className = "bedrooms">
-                        <option>2 br</option>
+                            <option>2 br</option>
+                        <option value = "0">All</option>
+                        <option value = "1">1+ br</option>
+                        <option value = "2">2+ br</option>
+                        <option value = "3">3+ br</option>
                     </select>
 
 
