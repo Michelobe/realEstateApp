@@ -15,21 +15,40 @@ class App extends Component {
             listingsData: listingsData,
             city: 'all',
             homeType: 'all',
-            bedrooms: 0,
+            bedrooms: 1,
             minPrice: 0,
             maxPrice: 10000000,
-            minFloorspace: 0,
-            maxFloorspace: 50000
+            minFloorSpace: 0,
+            maxFloorSpace: 50000,
+            elevator: false,
+            swimmingPool: false,
+            finishedBasement: false,
+            gym: false,
+            filteredData: listingsData
         };
+        this.change = this.change.bind(this);
+        this.filteredData = this.filteredData.bind(this);
+    }
+    change(event){
+        var name = event.target.name;
+        var value = (event.target.type === 'checkbox') ? event.target.checked : event.target.value;
+        this.setState({
+            [name]: value
+        },() => {
+            console.log(this.state);
+        });
+
+    }
+    filteredData(){
+        
     }
     render () {
-        console.log(this.state);
         return (
             <div>
                 <Header />
                 <section id = "contentArea">
-                    <Filter />
-                    <Listings listingsData = {this.state.listingsData} globalState = {this.state} />
+                    <Filter change = {this.change} globalState = {this.state} />
+                    <Listings listingsData = {this.state.filteredData} />
                 </section>
             </div>
         )

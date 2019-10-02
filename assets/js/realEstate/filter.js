@@ -17,8 +17,9 @@ export default class Filter extends Component {
                     <h4>Filter</h4>
 
 
-                    <select name = "filters city" 
-                            className = "city">
+                    <select name = "city" 
+                            className = "filters city"
+                            onChange = {this.props.change}>
                         <option value = "all">All</option>
                         <option value = "Portland">Portland</option>
                         <option value = "Vancouver">Vancouver</option>
@@ -27,76 +28,90 @@ export default class Filter extends Component {
                         <option value = "Anaheim">Anaheim</option>
                         <option value = "Newport">Newport</option>
                     </select>
-                    <select name = "filters houseType" 
-                            className = "houseType">
+                    <select name = "homeType" 
+                            className = "filters homeType"
+                            onChange = {this.props.change}>
                         <option value = "all">All</option>
                         <option value = "apartment">Apartment</option>
                         <option value = "condo">Condo</option>
                         <option value = "townHome">Town Home</option>
-                        <option value = "Room">Room</option>
+                        <option value = "room">Room</option>
                     </select>
-                    <select name = "filters bedrooms" 
-                            className = "bedrooms">
-                        <option value = "0">All</option>
+                    <select name = "bedrooms" 
+                            className = "filters bedrooms"
+                            onChange = {this.props.change}>
                         <option value = "1">1+ br</option>
                         <option value = "2">2+ br</option>
                         <option value = "3">3+ br</option>
+                        <option value = "4">4+ br</option>
                     </select>
 
 
                     <div className = "filters price">
                         <span className = "title">Price</span>
                         <input type = "text"
-                            name = "minPrice"
-                            className = "minPrice"></input>
+                               name = "minPrice"
+                               className = "minPrice"
+                               onChange = {this.props.change}
+                               value = {this.props.globalState.minPrice}></input>
                         
                         <input type = "text"
-                            name = "maxPrice"
-                            className = "maxPrice"></input>
+                               name = "maxPrice"
+                               className = "maxPrice"
+                               onChange = {this.props.change}
+                               value = {this.props.globalState.maxPrice}></input>
                     </div>
                     <div className = "filters floorSpace">
                         <span className = "title">Floor Space</span>
                         <input type = "text"
-                            name = "minFloorSpace"
-                            className = "minFloorSpace"></input>
+                               name = "minFloorSpace"
+                               className = "minFloorSpace"
+                               onChange = {this.props.change}
+                               value = {this.props.globalState.minFloorSpace}></input>
                         
                         <input type = "text"
-                            name = "maxFloorSpace"
-                            className = "maxFloorSpace"></input>
+                               name = "maxFloorSpace"
+                               className = "maxFloorSpace"
+                               onChange = {this.props.change}
+                               value = {this.props.globalState.maxFloorSpace}></input>
                     </div>
 
 
                     <div className = "filters extras">
                         <span className = "title">Extras</span>
-                        <label htmlFor = "extras">
+                        <label htmlFor = "elevator">
                             <span>Elevators</span>
                             <input type = "checkbox"
-                                name = "extras"
-                                value = "elevator"></input>
+                                   name = "elevator"
+                                   value = "elevator"
+                                   onChange = {this.props.change}></input>
                         </label>
                     </div>
                     <div className = "filters extras">
-                        <label htmlFor = "extras">
+                        <label htmlFor = "swimmingPool">
                             <span>Swimming Pool</span>
                             <input type = "checkbox"
-                                name = "extras"
-                                value = "swimming pool"></input>
+                                   name = "swimmingPool"
+                                   value = "swimmingPool"
+                                   onChange = {this.props.change}></input>
                         </label>
                     </div>
                     <div className = "filters extras">
-                        <label htmlFor = "extras">
+                        <label htmlFor = "finishedBasement">
                             <span>Finished Basement</span>
                             <input type = "checkbox"
-                                name = "extras"
-                                value = "swimming pool"></input>
+                                   name = "finishedBasement"
+                                   value = "finishedBasement"
+                                   onChange = {this.props.change}></input>
                         </label>
                     </div>
                     <div className = "filters extras">
-                        <label htmlFor = "extras">
+                        <label htmlFor = "gym">
                             <span>Gym</span>
                             <input type = "checkbox"
-                                name = "extras"
-                                value = "gym"></input>
+                                   name = "gym"
+                                   value = "gym"
+                                   onChange = {this.props.change}></input>
                         </label>
                     </div>
 

@@ -136,8 +136,9 @@ var Filter = function (_Component) {
                     ),
                     _react2.default.createElement(
                         'select',
-                        { name: 'filters city',
-                            className: 'city' },
+                        { name: 'city',
+                            className: 'filters city',
+                            onChange: this.props.change },
                         _react2.default.createElement(
                             'option',
                             { value: 'all' },
@@ -176,8 +177,9 @@ var Filter = function (_Component) {
                     ),
                     _react2.default.createElement(
                         'select',
-                        { name: 'filters houseType',
-                            className: 'houseType' },
+                        { name: 'homeType',
+                            className: 'filters homeType',
+                            onChange: this.props.change },
                         _react2.default.createElement(
                             'option',
                             { value: 'all' },
@@ -200,19 +202,15 @@ var Filter = function (_Component) {
                         ),
                         _react2.default.createElement(
                             'option',
-                            { value: 'Room' },
+                            { value: 'room' },
                             'Room'
                         )
                     ),
                     _react2.default.createElement(
                         'select',
-                        { name: 'filters bedrooms',
-                            className: 'bedrooms' },
-                        _react2.default.createElement(
-                            'option',
-                            { value: '0' },
-                            'All'
-                        ),
+                        { name: 'bedrooms',
+                            className: 'filters bedrooms',
+                            onChange: this.props.change },
                         _react2.default.createElement(
                             'option',
                             { value: '1' },
@@ -227,6 +225,11 @@ var Filter = function (_Component) {
                             'option',
                             { value: '3' },
                             '3+ br'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '4' },
+                            '4+ br'
                         )
                     ),
                     _react2.default.createElement(
@@ -239,10 +242,14 @@ var Filter = function (_Component) {
                         ),
                         _react2.default.createElement('input', { type: 'text',
                             name: 'minPrice',
-                            className: 'minPrice' }),
+                            className: 'minPrice',
+                            onChange: this.props.change,
+                            value: this.props.globalState.minPrice }),
                         _react2.default.createElement('input', { type: 'text',
                             name: 'maxPrice',
-                            className: 'maxPrice' })
+                            className: 'maxPrice',
+                            onChange: this.props.change,
+                            value: this.props.globalState.maxPrice })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -254,10 +261,14 @@ var Filter = function (_Component) {
                         ),
                         _react2.default.createElement('input', { type: 'text',
                             name: 'minFloorSpace',
-                            className: 'minFloorSpace' }),
+                            className: 'minFloorSpace',
+                            onChange: this.props.change,
+                            value: this.props.globalState.minFloorSpace }),
                         _react2.default.createElement('input', { type: 'text',
                             name: 'maxFloorSpace',
-                            className: 'maxFloorSpace' })
+                            className: 'maxFloorSpace',
+                            onChange: this.props.change,
+                            value: this.props.globalState.maxFloorSpace })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -269,15 +280,16 @@ var Filter = function (_Component) {
                         ),
                         _react2.default.createElement(
                             'label',
-                            { htmlFor: 'extras' },
+                            { htmlFor: 'elevator' },
                             _react2.default.createElement(
                                 'span',
                                 null,
                                 'Elevators'
                             ),
                             _react2.default.createElement('input', { type: 'checkbox',
-                                name: 'extras',
-                                value: 'elevator' })
+                                name: 'elevator',
+                                value: 'elevator',
+                                onChange: this.props.change })
                         )
                     ),
                     _react2.default.createElement(
@@ -285,15 +297,16 @@ var Filter = function (_Component) {
                         { className: 'filters extras' },
                         _react2.default.createElement(
                             'label',
-                            { htmlFor: 'extras' },
+                            { htmlFor: 'swimmingPool' },
                             _react2.default.createElement(
                                 'span',
                                 null,
                                 'Swimming Pool'
                             ),
                             _react2.default.createElement('input', { type: 'checkbox',
-                                name: 'extras',
-                                value: 'swimming pool' })
+                                name: 'swimmingPool',
+                                value: 'swimmingPool',
+                                onChange: this.props.change })
                         )
                     ),
                     _react2.default.createElement(
@@ -301,15 +314,16 @@ var Filter = function (_Component) {
                         { className: 'filters extras' },
                         _react2.default.createElement(
                             'label',
-                            { htmlFor: 'extras' },
+                            { htmlFor: 'finishedBasement' },
                             _react2.default.createElement(
                                 'span',
                                 null,
                                 'Finished Basement'
                             ),
                             _react2.default.createElement('input', { type: 'checkbox',
-                                name: 'extras',
-                                value: 'swimming pool' })
+                                name: 'finishedBasement',
+                                value: 'finishedBasement',
+                                onChange: this.props.change })
                         )
                     ),
                     _react2.default.createElement(
@@ -317,15 +331,16 @@ var Filter = function (_Component) {
                         { className: 'filters extras' },
                         _react2.default.createElement(
                             'label',
-                            { htmlFor: 'extras' },
+                            { htmlFor: 'gym' },
                             _react2.default.createElement(
                                 'span',
                                 null,
                                 'Gym'
                             ),
                             _react2.default.createElement('input', { type: 'checkbox',
-                                name: 'extras',
-                                value: 'gym' })
+                                name: 'gym',
+                                value: 'gym',
+                                onChange: this.props.change })
                         )
                     )
                 )
@@ -474,6 +489,10 @@ var Listings = function (_Component) {
         value: function loopListings() {
             var listingsData = this.props.listingsData;
 
+
+            if (listingsData == undefined || listingsData.length == 0) {
+                return "Sorry, your filter did not match any listing";
+            }
 
             return listingsData.map(function (listing, index) {
                 return _react2.default.createElement(
@@ -728,6 +747,8 @@ var _listingsData2 = _interopRequireDefault(_listingsData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -748,19 +769,39 @@ var App = function (_Component) {
             listingsData: _listingsData2.default,
             city: 'all',
             homeType: 'all',
-            bedrooms: 0,
+            bedrooms: 1,
             minPrice: 0,
             maxPrice: 10000000,
-            minFloorspace: 0,
-            maxFloorspace: 50000
+            minFloorSpace: 0,
+            maxFloorSpace: 50000,
+            elevator: false,
+            swimmingPool: false,
+            finishedBasement: false,
+            gym: false,
+            filteredData: _listingsData2.default
         };
+        _this.change = _this.change.bind(_this);
+        _this.filteredData = _this.filteredData.bind(_this);
         return _this;
     }
 
     _createClass(App, [{
+        key: 'change',
+        value: function change(event) {
+            var _this2 = this;
+
+            var name = event.target.name;
+            var value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+            this.setState(_defineProperty({}, name, value), function () {
+                console.log(_this2.state);
+            });
+        }
+    }, {
+        key: 'filteredData',
+        value: function filteredData() {}
+    }, {
         key: 'render',
         value: function render() {
-            console.log(this.state);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -768,8 +809,8 @@ var App = function (_Component) {
                 _react2.default.createElement(
                     'section',
                     { id: 'contentArea' },
-                    _react2.default.createElement(_filter2.default, null),
-                    _react2.default.createElement(_listings2.default, { listingsData: this.state.listingsData, globalState: this.state })
+                    _react2.default.createElement(_filter2.default, { change: this.change, globalState: this.state }),
+                    _react2.default.createElement(_listings2.default, { listingsData: this.state.filteredData })
                 )
             );
         }
