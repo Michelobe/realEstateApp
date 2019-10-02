@@ -117,10 +117,40 @@ var Filter = function (_Component) {
         _this.state = {
             name: 'Michael'
         };
+        _this.cities = _this.cities.bind(_this);
+        _this.homeTypes = _this.homeTypes.bind(_this);
+        _this.bedrooms = _this.bedrooms.bind(_this);
         return _this;
     }
 
     _createClass(Filter, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.props.populateAction();
+        }
+    }, {
+        key: 'cities',
+        value: function cities() {
+            if (this.props.globalState.populateFormsData.cities != undefined) {
+                var cities = this.props.globalState.populateFormsData.cities;
+
+
+                return cities.map(function (item) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: item, value: item },
+                        item
+                    );
+                });
+            }
+        }
+    }, {
+        key: 'homeTypes',
+        value: function homeTypes() {}
+    }, {
+        key: 'bedrooms',
+        value: function bedrooms() {}
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -144,36 +174,7 @@ var Filter = function (_Component) {
                             { value: 'all' },
                             'City'
                         ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'Portland' },
-                            'Portland'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'Vancouver' },
-                            'Vancouver'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'Gresham' },
-                            'Gresham'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'Orange' },
-                            'Orange'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'Anaheim' },
-                            'Anaheim'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'Newport' },
-                            'Newport'
-                        )
+                        this.cities()
                     ),
                     _react2.default.createElement(
                         'select',
@@ -752,6 +753,8 @@ var _listingsData2 = _interopRequireDefault(_listingsData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -783,10 +786,12 @@ var App = function (_Component) {
             swimmingPool: false,
             finishedBasement: false,
             gym: false,
-            filteredData: _listingsData2.default
+            filteredData: _listingsData2.default,
+            populateFormsData: []
         };
         _this.change = _this.change.bind(_this);
         _this.filteredData = _this.filteredData.bind(_this);
+        _this.populateForms = _this.populateForms.bind(_this);
         return _this;
     }
 
@@ -826,6 +831,38 @@ var App = function (_Component) {
             });
         }
     }, {
+        key: 'populateForms',
+        value: function populateForms() {
+            //city
+            var cities = this.state.listingsData.map(function (item) {
+                return item.city;
+            });
+            cities = new Set(cities);
+            cities = [].concat(_toConsumableArray(cities));
+
+            //homeType
+            var homeTypes = this.state.listingsData.map(function (item) {
+                return item.homeType;
+            });
+            homeTypes = new Set(homeTypes);
+            homeTypes = [].concat(_toConsumableArray(homeTypes));
+
+            //bedrooms
+            var bedrooms = this.state.listingsData.map(function (item) {
+                return item.bedrooms;
+            });
+            bedrooms = new Set(bedrooms);
+            bedrooms = [].concat(_toConsumableArray(bedrooms));
+
+            this.setState({
+                populateFormsData: {
+                    cities: cities,
+                    homeTypes: homeTypes,
+                    bedrooms: bedrooms
+                }
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -835,7 +872,7 @@ var App = function (_Component) {
                 _react2.default.createElement(
                     'section',
                     { id: 'contentArea' },
-                    _react2.default.createElement(_filter2.default, { change: this.change, globalState: this.state }),
+                    _react2.default.createElement(_filter2.default, { change: this.change, globalState: this.state, populateAction: this.populateForms }),
                     _react2.default.createElement(_listings2.default, { listingsData: this.state.filteredData })
                 )
             );
