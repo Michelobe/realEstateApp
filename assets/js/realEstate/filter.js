@@ -20,7 +20,7 @@ export default class Filter extends Component {
                     <select name = "city" 
                             className = "filters city"
                             onChange = {this.props.change}>
-                        <option value = "all">All</option>
+                        <option value = "all">City</option>
                         <option value = "Portland">Portland</option>
                         <option value = "Vancouver">Vancouver</option>
                         <option value = "Gresham">Gresham</option>
@@ -31,7 +31,7 @@ export default class Filter extends Component {
                     <select name = "homeType" 
                             className = "filters homeType"
                             onChange = {this.props.change}>
-                        <option value = "all">All</option>
+                        <option value = "all">Home Type</option>
                         <option value = "apartment">Apartment</option>
                         <option value = "condo">Condo</option>
                         <option value = "townHome">Town Home</option>
@@ -40,6 +40,7 @@ export default class Filter extends Component {
                     <select name = "bedrooms" 
                             className = "filters bedrooms"
                             onChange = {this.props.change}>
+                        <option value = "0">0+ br</option>
                         <option value = "1">1+ br</option>
                         <option value = "2">2+ br</option>
                         <option value = "3">3+ br</option>

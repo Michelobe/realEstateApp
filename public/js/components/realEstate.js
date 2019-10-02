@@ -142,7 +142,7 @@ var Filter = function (_Component) {
                         _react2.default.createElement(
                             'option',
                             { value: 'all' },
-                            'All'
+                            'City'
                         ),
                         _react2.default.createElement(
                             'option',
@@ -183,7 +183,7 @@ var Filter = function (_Component) {
                         _react2.default.createElement(
                             'option',
                             { value: 'all' },
-                            'All'
+                            'Home Type'
                         ),
                         _react2.default.createElement(
                             'option',
@@ -211,6 +211,11 @@ var Filter = function (_Component) {
                         { name: 'bedrooms',
                             className: 'filters bedrooms',
                             onChange: this.props.change },
+                        _react2.default.createElement(
+                            'option',
+                            { value: '0' },
+                            '0+ br'
+                        ),
                         _react2.default.createElement(
                             'option',
                             { value: '1' },
@@ -769,7 +774,7 @@ var App = function (_Component) {
             listingsData: _listingsData2.default,
             city: 'all',
             homeType: 'all',
-            bedrooms: 1,
+            bedrooms: 0,
             minPrice: 0,
             maxPrice: 10000000,
             minFloorSpace: 0,
@@ -794,11 +799,32 @@ var App = function (_Component) {
             var value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
             this.setState(_defineProperty({}, name, value), function () {
                 console.log(_this2.state);
+                _this2.filteredData();
             });
         }
     }, {
         key: 'filteredData',
-        value: function filteredData() {}
+        value: function filteredData() {
+            var _this3 = this;
+
+            var newData = this.state.listingsData.filter(function (item) {
+                return item.price >= _this3.state.minPrice && item.price <= _this3.state.maxPrice && item.floorspace >= _this3.state.minFloorSpace && item.floorspace <= _this3.state.maxFloorSpace && item.bedrooms >= _this3.state.bedrooms;
+            });
+            if (this.state.city != 'all') {
+                newData = newData.filter(function (item) {
+                    return item.city == _this3.state.city;
+                });
+            }
+            if (this.state.homeType != 'all') {
+                newData = newData.filter(function (item) {
+                    return item.homeType == _this3.state.homeType;
+                });
+            }
+
+            this.setState({
+                filteredData: newData
+            });
+        }
     }, {
         key: 'render',
         value: function render() {

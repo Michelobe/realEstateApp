@@ -15,7 +15,7 @@ class App extends Component {
             listingsData: listingsData,
             city: 'all',
             homeType: 'all',
-            bedrooms: 1,
+            bedrooms: 0,
             minPrice: 0,
             maxPrice: 10000000,
             minFloorSpace: 0,
@@ -36,11 +36,32 @@ class App extends Component {
             [name]: value
         },() => {
             console.log(this.state);
+            this.filteredData();
         });
 
     }
     filteredData(){
-        
+        var newData = this.state.listingsData.filter((item) => {
+            return item.price >= this.state.minPrice &&
+                   item.price <= this.state.maxPrice &&
+                   item.floorspace >= this.state.minFloorSpace &&
+                   item.floorspace <= this.state.maxFloorSpace &&
+                   item.bedrooms >= this.state.bedrooms;
+        });
+        if(this.state.city != 'all'){
+            newData = newData.filter((item) => {
+                return item.city == this.state.city;
+            });
+        }
+        if(this.state.homeType != 'all'){
+            newData = newData.filter((item) => {
+                return item.homeType == this.state.homeType;
+            });
+        }
+
+        this.setState({
+            filteredData : newData
+        });
     }
     render () {
         return (
