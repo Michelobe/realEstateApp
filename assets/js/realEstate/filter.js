@@ -28,10 +28,28 @@ export default class Filter extends Component {
         }
     }
     homeTypes(){
-        
+        if(this.props.globalState.populateFormsData.homeTypes != undefined){
+            var { homeTypes } = this.props.globalState.populateFormsData;
+    
+    
+            return homeTypes.map((item) => {
+                return (
+                    <option key = {item} value = {item}>{item}</option>
+                )
+            });
+        }
     }
     bedrooms(){
-        
+        if(this.props.globalState.populateFormsData.bedrooms != undefined){
+            var { bedrooms } = this.props.globalState.populateFormsData;
+    
+    
+            return bedrooms.map((item) => {
+                return (
+                    <option key = {item} value = {item}>{item}+ br</option>
+                )
+            });
+        }
     }
     render () {
         return (
@@ -44,28 +62,20 @@ export default class Filter extends Component {
                     <select name = "city" 
                             className = "filters city"
                             onChange = {this.props.change}>
-                    <option value = "all">City</option>
-
-                    {this.cities()}
-
+                        <option value = "all">City</option>
+                        {this.cities()}
                     </select>
                     <select name = "homeType" 
                             className = "filters homeType"
                             onChange = {this.props.change}>
                         <option value = "all">Home Type</option>
-                        <option value = "apartment">Apartment</option>
-                        <option value = "condo">Condo</option>
-                        <option value = "townHome">Town Home</option>
-                        <option value = "room">Room</option>
+                        {this.homeTypes()}
                     </select>
                     <select name = "bedrooms" 
                             className = "filters bedrooms"
                             onChange = {this.props.change}>
-                        <option value = "0">0+ br</option>
-                        <option value = "1">1+ br</option>
-                        <option value = "2">2+ br</option>
-                        <option value = "3">3+ br</option>
-                        <option value = "4">4+ br</option>
+                        <option value = "0">Any</option>
+                        {this.bedrooms()}
                     </select>
 
 

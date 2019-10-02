@@ -146,10 +146,37 @@ var Filter = function (_Component) {
         }
     }, {
         key: 'homeTypes',
-        value: function homeTypes() {}
+        value: function homeTypes() {
+            if (this.props.globalState.populateFormsData.homeTypes != undefined) {
+                var homeTypes = this.props.globalState.populateFormsData.homeTypes;
+
+
+                return homeTypes.map(function (item) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: item, value: item },
+                        item
+                    );
+                });
+            }
+        }
     }, {
         key: 'bedrooms',
-        value: function bedrooms() {}
+        value: function bedrooms() {
+            if (this.props.globalState.populateFormsData.bedrooms != undefined) {
+                var bedrooms = this.props.globalState.populateFormsData.bedrooms;
+
+
+                return bedrooms.map(function (item) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: item, value: item },
+                        item,
+                        '+ br'
+                    );
+                });
+            }
+        }
     }, {
         key: 'render',
         value: function render() {
@@ -186,26 +213,7 @@ var Filter = function (_Component) {
                             { value: 'all' },
                             'Home Type'
                         ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'apartment' },
-                            'Apartment'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'condo' },
-                            'Condo'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'townHome' },
-                            'Town Home'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'room' },
-                            'Room'
-                        )
+                        this.homeTypes()
                     ),
                     _react2.default.createElement(
                         'select',
@@ -215,28 +223,9 @@ var Filter = function (_Component) {
                         _react2.default.createElement(
                             'option',
                             { value: '0' },
-                            '0+ br'
+                            'Any'
                         ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: '1' },
-                            '1+ br'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: '2' },
-                            '2+ br'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: '3' },
-                            '3+ br'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: '4' },
-                            '4+ br'
-                        )
+                        this.bedrooms()
                     ),
                     _react2.default.createElement(
                         'div',
