@@ -192,6 +192,11 @@ var Filter = function (_Component) {
                         'Filter'
                     ),
                     _react2.default.createElement(
+                        'label',
+                        { htmlFor: 'city' },
+                        'City'
+                    ),
+                    _react2.default.createElement(
                         'select',
                         { name: 'city',
                             className: 'filters city',
@@ -204,6 +209,11 @@ var Filter = function (_Component) {
                         this.cities()
                     ),
                     _react2.default.createElement(
+                        'label',
+                        { htmlFor: 'homeType' },
+                        'Home Type'
+                    ),
+                    _react2.default.createElement(
                         'select',
                         { name: 'homeType',
                             className: 'filters homeType',
@@ -214,6 +224,11 @@ var Filter = function (_Component) {
                             'Home Type'
                         ),
                         this.homeTypes()
+                    ),
+                    _react2.default.createElement(
+                        'label',
+                        { htmlFor: 'bedrooms' },
+                        'Bedrooms'
                     ),
                     _react2.default.createElement(
                         'select',
@@ -482,6 +497,8 @@ var Listings = function (_Component) {
     _createClass(Listings, [{
         key: 'loopListings',
         value: function loopListings() {
+            var _this2 = this;
+
             var listingsData = this.props.listingsData;
 
 
@@ -490,112 +507,224 @@ var Listings = function (_Component) {
             }
 
             return listingsData.map(function (listing, index) {
-                return _react2.default.createElement(
-                    'div',
-                    { className: 'listing', key: index },
-                    _react2.default.createElement(
+
+                if (_this2.props.globalState.view == 'boxGrid') {
+                    // THIS IS THE LISTINGS   BOXGRID VIEW
+                    return _react2.default.createElement(
                         'div',
-                        { className: 'listingImg',
-                            style: { background: 'url("' + listing.img + '") no-repeat center center',
-                                backgroundSize: 'cover' } },
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'address' },
-                            listing.address
-                        ),
+                        { className: 'listing boxGrid', key: index },
                         _react2.default.createElement(
                             'div',
-                            { className: 'details' },
-                            _react2.default.createElement('div', { className: 'userImg' }),
+                            { className: 'listingImg',
+                                style: { background: 'url("' + listing.img + '") no-repeat center center',
+                                    backgroundSize: 'cover' } },
                             _react2.default.createElement(
-                                'div',
-                                { className: ' userDetails' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'userName' },
-                                    'Nina Smith'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'postDate' },
-                                    '09/23/2019'
-                                )
+                                'span',
+                                { className: 'address' },
+                                listing.address
                             ),
                             _react2.default.createElement(
                                 'div',
-                                { className: 'listingDetails' },
+                                { className: 'details' },
+                                _react2.default.createElement('div', { className: 'userImg' }),
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'floorspace' },
-                                    _react2.default.createElement('i', { className: 'fas fa-home' }),
+                                    { className: ' userDetails' },
                                     _react2.default.createElement(
                                         'span',
-                                        null,
-                                        ' ',
-                                        listing.floorspace,
-                                        ' ft\xB2'
+                                        { className: 'userName' },
+                                        'Nina Smith'
+                                    ),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'postDate' },
+                                        '09/23/2019'
                                     )
                                 ),
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'furnishing' },
-                                    _react2.default.createElement('i', { className: 'fas fa-couch' }),
+                                    { className: 'listingDetails' },
                                     _react2.default.createElement(
-                                        'span',
-                                        null,
-                                        ' ',
-                                        listing.furnished
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'bedrooms' },
-                                    _react2.default.createElement('i', { className: 'fas fa-bed' }),
+                                        'div',
+                                        { className: 'floorspace' },
+                                        _react2.default.createElement('i', { className: 'fas fa-home' }),
+                                        _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            ' ',
+                                            listing.floorspace,
+                                            ' ft\xB2'
+                                        )
+                                    ),
                                     _react2.default.createElement(
-                                        'span',
-                                        null,
-                                        ' ',
-                                        listing.bedrooms,
-                                        ' bedrooms'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'viewBtn' },
+                                        'div',
+                                        { className: 'furnishing' },
+                                        _react2.default.createElement('i', { className: 'fas fa-couch' }),
+                                        _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            ' ',
+                                            listing.furnished
+                                        )
+                                    ),
                                     _react2.default.createElement(
-                                        'a',
-                                        { href: '#' },
-                                        'View Listings'
+                                        'div',
+                                        { className: 'bedrooms' },
+                                        _react2.default.createElement('i', { className: 'fas fa-bed' }),
+                                        _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            ' ',
+                                            listing.bedrooms,
+                                            ' bedrooms'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'viewBtn' },
+                                        _react2.default.createElement(
+                                            'a',
+                                            { href: '#' },
+                                            'View Listings'
+                                        )
                                     )
                                 )
                             )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'bottomInfo' },
-                        _react2.default.createElement(
-                            'span',
-                            null,
-                            '$',
-                            listing.price,
-                            ' (USD)'
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'bottomLocation' },
-                            _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
+                            { className: 'bottomInfo' },
                             _react2.default.createElement(
                                 'span',
                                 null,
-                                ' ',
-                                listing.city,
-                                ', ',
-                                listing.state
+                                '$',
+                                listing.price,
+                                ' (USD)'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'bottomLocation' },
+                                _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
+                                _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    ' ',
+                                    listing.city,
+                                    ', ',
+                                    listing.state
+                                )
                             )
                         )
-                    )
-                );
+                    );
+                } else {
+                    // THIS IS THE LISTINGS   ROW VIEW
+                    return _react2.default.createElement(
+                        'div',
+                        { className: 'listing rowGrid', key: index },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'listingImg',
+                                style: { background: 'url("' + listing.img + '") no-repeat center center',
+                                    backgroundSize: 'cover' } },
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'address' },
+                                listing.address
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'details' },
+                                _react2.default.createElement('div', { className: 'userImg' }),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: ' userDetails' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'userName' },
+                                        'Nina Smith'
+                                    ),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'postDate' },
+                                        '09/23/2019'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'listingDetails' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'floorspace' },
+                                        _react2.default.createElement('i', { className: 'fas fa-home' }),
+                                        _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            ' ',
+                                            listing.floorspace,
+                                            ' ft\xB2'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'furnishing' },
+                                        _react2.default.createElement('i', { className: 'fas fa-couch' }),
+                                        _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            ' ',
+                                            listing.furnished
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'bedrooms' },
+                                        _react2.default.createElement('i', { className: 'fas fa-bed' }),
+                                        _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            ' ',
+                                            listing.bedrooms,
+                                            ' bedrooms'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'viewBtn' },
+                                        _react2.default.createElement(
+                                            'a',
+                                            { href: '#' },
+                                            'View Listings'
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'bottomInfo' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                '$',
+                                listing.price,
+                                ' (USD)'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'bottomLocation' },
+                                _react2.default.createElement('i', { className: 'fas fa-map-marker-alt' }),
+                                _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    ' ',
+                                    listing.city,
+                                    ', ',
+                                    listing.state
+                                )
+                            )
+                        )
+                    );
+                }
             });
         }
     }, {
@@ -622,16 +751,18 @@ var Listings = function (_Component) {
                         { className: 'sortOptions' },
                         _react2.default.createElement(
                             'select',
-                            { name: 'sortBy', className: 'sortBy' },
+                            { name: 'sortBy',
+                                className: 'sortBy',
+                                onChange: this.props.change },
                             _react2.default.createElement(
                                 'option',
                                 { value: 'priceAsc' },
-                                'Highest price'
+                                'Price(Lowest to Highest)'
                             ),
                             _react2.default.createElement(
                                 'option',
-                                { value: 'priceAsc' },
-                                'Lowest price'
+                                { value: 'priceDsc' },
+                                'Price(Highest to Lowest)'
                             )
                         ),
                         _react2.default.createElement(
@@ -776,7 +907,9 @@ var App = function (_Component) {
             finishedBasement: false,
             gym: false,
             filteredData: _listingsData2.default,
-            populateFormsData: []
+            populateFormsData: [],
+            sortBy: 'priceDsc',
+            view: 'rowGrid'
         };
         _this.change = _this.change.bind(_this);
         _this.filteredData = _this.filteredData.bind(_this);
@@ -791,6 +924,7 @@ var App = function (_Component) {
 
             var name = event.target.name;
             var value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+
             this.setState(_defineProperty({}, name, value), function () {
                 console.log(_this2.state);
                 _this2.filteredData();
@@ -815,6 +949,17 @@ var App = function (_Component) {
                 });
             }
 
+            if (this.state.sortBy == 'priceDsc') {
+                newData = newData.sort(function (a, b) {
+                    return b.price - a.price;
+                });
+            }
+            if (this.state.sortBy == 'priceAsc') {
+                newData = newData.sort(function (a, b) {
+                    return a.price - b.price;
+                });
+            }
+
             this.setState({
                 filteredData: newData
             });
@@ -828,6 +973,7 @@ var App = function (_Component) {
             });
             cities = new Set(cities);
             cities = [].concat(_toConsumableArray(cities));
+            cities = cities.sort();
 
             //homeType
             var homeTypes = this.state.listingsData.map(function (item) {
@@ -835,6 +981,7 @@ var App = function (_Component) {
             });
             homeTypes = new Set(homeTypes);
             homeTypes = [].concat(_toConsumableArray(homeTypes));
+            homeTypes = homeTypes.sort();
 
             //bedrooms
             var bedrooms = this.state.listingsData.map(function (item) {
@@ -842,6 +989,7 @@ var App = function (_Component) {
             });
             bedrooms = new Set(bedrooms);
             bedrooms = [].concat(_toConsumableArray(bedrooms));
+            bedrooms = bedrooms.sort();
 
             this.setState({
                 populateFormsData: {
@@ -849,6 +997,17 @@ var App = function (_Component) {
                     homeTypes: homeTypes,
                     bedrooms: bedrooms
                 }
+            });
+        }
+    }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var listingsData = this.state.listingsData.sort(function (a, b) {
+                return a.price - b.price;
+            });
+
+            this.setState({
+                listingsData: listingsData
             });
         }
     }, {
@@ -861,8 +1020,12 @@ var App = function (_Component) {
                 _react2.default.createElement(
                     'section',
                     { id: 'contentArea' },
-                    _react2.default.createElement(_filter2.default, { change: this.change, globalState: this.state, populateAction: this.populateForms }),
-                    _react2.default.createElement(_listings2.default, { listingsData: this.state.filteredData })
+                    _react2.default.createElement(_filter2.default, { change: this.change,
+                        globalState: this.state,
+                        populateAction: this.populateForms }),
+                    _react2.default.createElement(_listings2.default, { change: this.change,
+                        listingsData: this.state.filteredData,
+                        globalState: this.state })
                 )
             );
         }

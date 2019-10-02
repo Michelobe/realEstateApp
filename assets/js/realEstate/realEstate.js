@@ -25,7 +25,9 @@ class App extends Component {
             finishedBasement: false,
             gym: false,
             filteredData: listingsData,
-            populateFormsData: []
+            populateFormsData: [],
+            sortBy: 'priceDsc',
+            view: 'rowGrid'
         };
         this.change = this.change.bind(this);
         this.filteredData = this.filteredData.bind(this);
@@ -34,6 +36,7 @@ class App extends Component {
     change(event){
         var name = event.target.name;
         var value = (event.target.type === 'checkbox') ? event.target.checked : event.target.value;
+        
         this.setState({
             [name]: value
         },() => {
@@ -61,6 +64,17 @@ class App extends Component {
             });
         }
 
+        if(this.state.sortBy == 'priceDsc'){
+            newData = newData.sort((a,b) => {
+                return (b.price - a.price);
+            });
+        }
+        if(this.state.sortBy == 'priceAsc'){
+            newData = newData.sort((a,b) => {
+                return (a.price - b.price);
+            });
+        }
+
         this.setState({
             filteredData : newData
         });
@@ -72,6 +86,7 @@ class App extends Component {
         });
         cities = new Set(cities);
         cities = [...cities];
+        cities = cities.sort();
 
         //homeType
         var homeTypes = this.state.listingsData.map((item) => {
@@ -79,6 +94,7 @@ class App extends Component {
         });
         homeTypes = new Set(homeTypes);
         homeTypes = [...homeTypes];
+        homeTypes = homeTypes.sort();
 
         //bedrooms
         var bedrooms = this.state.listingsData.map((item) => {
@@ -86,6 +102,7 @@ class App extends Component {
         });
         bedrooms = new Set(bedrooms);
         bedrooms = [...bedrooms];
+        bedrooms = bedrooms.sort();
 
         this.setState({
             populateFormsData: {
@@ -95,13 +112,26 @@ class App extends Component {
             }
         });
     }
+    componentWillMount(){
+        var listingsData = this.state.listingsData.sort((a, b) => {
+            return (a.price - b.price);
+        });
+
+        this.setState({
+            listingsData
+        })
+    }
     render () {
         return (
             <div>
                 <Header />
                 <section id = "contentArea">
-                    <Filter change = {this.change} globalState = {this.state} populateAction = {this.populateForms} />
-                    <Listings listingsData = {this.state.filteredData} />
+                    <Filter change = {this.change} 
+                            globalState = {this.state} 
+                            populateAction = {this.populateForms} />
+                    <Listings change = {this.change} 
+                              listingsData = {this.state.filteredData}
+                              globalState = {this.state}  />
                 </section>
             </div>
         )

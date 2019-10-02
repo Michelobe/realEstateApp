@@ -6,3 +6,11 @@ $gray: rgb(233, 233, 233);
 $offWhite: rgb(245, 244, 244);
 $pink: #FF718E;
 $darkGray: rgb(143, 137, 137);
+
+//BREAKPOINTS
+$gridColumns: 12;
+$gridMaxWidth: 1200px;
+$breakpointSmall: 'only screen and (min-width: 0px;)';
+$breakpointMedium: 'only screen and (min-width: 768px;)';
+$breakpointLarge: 'only screen and (min-width: 1008px;)';
+$breakpointXl: 'only screen and (min-width: 1300px;)';

@@ -58,19 +58,21 @@ export default class Filter extends Component {
 
                     <h4>Filter</h4>
 
-
+                    <label htmlFor = "city">City</label>
                     <select name = "city" 
                             className = "filters city"
                             onChange = {this.props.change}>
                         <option value = "all">City</option>
                         {this.cities()}
                     </select>
+                    <label htmlFor = "homeType">Home Type</label>
                     <select name = "homeType" 
                             className = "filters homeType"
                             onChange = {this.props.change}>
                         <option value = "all">Home Type</option>
                         {this.homeTypes()}
                     </select>
+                    <label htmlFor = "bedrooms">Bedrooms</label>
                     <select name = "bedrooms" 
                             className = "filters bedrooms"
                             onChange = {this.props.change}>
