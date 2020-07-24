@@ -7,10 +7,10 @@ var listingsData = [
         price: 220000,
         floorspace: 2000,
         furnished: 'furnished',
-        extras: [
-            'elevator',
-            'gym'
-        ],
+        elevator: true,
+        swimmingPool: false,
+        finishedBasement: true,
+        gym: false,
         homeType: 'townHome',
         img: 'https://cdngeneral.rentcafe.com/dmslivecafe/3/548638/yard-portland-or-interior-photo%20(6).jpg?crop=(0,41.312499999999744,300,166)&cropxunits=300&cropyunits=200&quality=85&scale=both&'
     },
@@ -22,10 +22,10 @@ var listingsData = [
         price: 300000,
         floorspace: 2000,
         furnished: 'unfurnished',
-        extras: [
-            'elevator',
-            'gym'
-        ],
+        elevator: false,
+        swimmingPool: true,
+        finishedBasement: false,
+        gym: true,
         homeType: 'condo',
         img: 'https://www.wweek.com/resizer/P4RBZU4qq1PydaeXDRllYpmdflc=/1200x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/wweek/wp-content/uploads/2017/03/16144604/Cumberland_Apartments_-_Portland_Oregon.jpg'
     },
@@ -37,10 +37,10 @@ var listingsData = [
         price: 150000,
         floorspace: 1500,
         furnished: 'furnished',
-        extras: [
-            'elevator',
-            'gym'
-        ],
+        elevator: false,
+        swimmingPool: false,
+        finishedBasement: true,
+        gym: false,
         homeType: 'apartment',
         img: 'http://4.bp.blogspot.com/-sdNt2H_HijQ/UTczJTqkKQI/AAAAAAAAJp4/fSRvB57GYjs/s640/Imagen+141.jpg'
     },
@@ -52,10 +52,10 @@ var listingsData = [
         price: 750000,
         floorspace: 1850,
         furnished: 'unfurnished',
-        extras: [
-            'elevator',
-            'gym'
-        ],
+        elevator: false,
+        swimmingPool: false,
+        finishedBasement: false,
+        gym: true,
         homeType: 'apartment',
         img: 'https://images1.apartments.com/i2/o3yLIWy8fECW6YnOJ0FSyyQqrdzzW4UgLzTCqO1QgAM/111/cadence-apartments-portland-or-primary-photo.jpg'
     },
@@ -67,10 +67,10 @@ var listingsData = [
         price: 300000,
         floorspace: 1200,
         furnished: 'furnished',
-        extras: [
-            'elevator',
-            'gym'
-        ],
+        elevator: false,
+        swimmingPool: true,
+        finishedBasement: false,
+        gym: false,
         homeType: 'apartment',
         img: 'https://images1.apartments.com/i2/Ai79gx3kIZm30f9KEvAi0DPk1d8EpAndO7L69B-7S0w/117/image.jpg'
     },
@@ -82,10 +82,10 @@ var listingsData = [
         price: 220000,
         floorspace: 2000,
         furnished: 'unfurnished',
-        extras: [
-            'elevator',
-            'gym'
-        ],
+        elevator: true,
+        swimmingPool: false,
+        finishedBasement: false,
+        gym: false,
         homeType: 'room',
         img: 'http://media.bizj.us/view/img/10223816/the-cameron-medium-1*750xx1200-675-0-113.jpg'
     }

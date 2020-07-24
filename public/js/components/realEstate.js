@@ -17,7 +17,10 @@ var listingsData = [{
     price: 220000,
     floorspace: 2000,
     furnished: 'furnished',
-    extras: ['elevator', 'gym'],
+    elevator: true,
+    swimmingPool: false,
+    finishedBasement: true,
+    gym: false,
     homeType: 'townHome',
     img: 'https://cdngeneral.rentcafe.com/dmslivecafe/3/548638/yard-portland-or-interior-photo%20(6).jpg?crop=(0,41.312499999999744,300,166)&cropxunits=300&cropyunits=200&quality=85&scale=both&'
 }, {
@@ -28,7 +31,10 @@ var listingsData = [{
     price: 300000,
     floorspace: 2000,
     furnished: 'unfurnished',
-    extras: ['elevator', 'gym'],
+    elevator: false,
+    swimmingPool: true,
+    finishedBasement: false,
+    gym: true,
     homeType: 'condo',
     img: 'https://www.wweek.com/resizer/P4RBZU4qq1PydaeXDRllYpmdflc=/1200x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/wweek/wp-content/uploads/2017/03/16144604/Cumberland_Apartments_-_Portland_Oregon.jpg'
 }, {
@@ -39,7 +45,10 @@ var listingsData = [{
     price: 150000,
     floorspace: 1500,
     furnished: 'furnished',
-    extras: ['elevator', 'gym'],
+    elevator: false,
+    swimmingPool: false,
+    finishedBasement: true,
+    gym: false,
     homeType: 'apartment',
     img: 'http://4.bp.blogspot.com/-sdNt2H_HijQ/UTczJTqkKQI/AAAAAAAAJp4/fSRvB57GYjs/s640/Imagen+141.jpg'
 }, {
@@ -50,7 +59,10 @@ var listingsData = [{
     price: 750000,
     floorspace: 1850,
     furnished: 'unfurnished',
-    extras: ['elevator', 'gym'],
+    elevator: false,
+    swimmingPool: false,
+    finishedBasement: false,
+    gym: true,
     homeType: 'apartment',
     img: 'https://images1.apartments.com/i2/o3yLIWy8fECW6YnOJ0FSyyQqrdzzW4UgLzTCqO1QgAM/111/cadence-apartments-portland-or-primary-photo.jpg'
 }, {
@@ -61,7 +73,10 @@ var listingsData = [{
     price: 300000,
     floorspace: 1200,
     furnished: 'furnished',
-    extras: ['elevator', 'gym'],
+    elevator: false,
+    swimmingPool: true,
+    finishedBasement: false,
+    gym: false,
     homeType: 'apartment',
     img: 'https://images1.apartments.com/i2/Ai79gx3kIZm30f9KEvAi0DPk1d8EpAndO7L69B-7S0w/117/image.jpg'
 }, {
@@ -72,7 +87,10 @@ var listingsData = [{
     price: 220000,
     floorspace: 2000,
     furnished: 'unfurnished',
-    extras: ['elevator', 'gym'],
+    elevator: true,
+    swimmingPool: false,
+    finishedBasement: false,
+    gym: false,
     homeType: 'room',
     img: 'http://media.bizj.us/view/img/10223816/the-cameron-medium-1*750xx1200-675-0-113.jpg'
 }];
@@ -736,7 +754,9 @@ var Listings = function (_Component) {
                 _react2.default.createElement(
                     'section',
                     { className: 'searchArea' },
-                    _react2.default.createElement('input', { type: 'text', name: 'search' })
+                    _react2.default.createElement('input', { type: 'text',
+                        name: 'search',
+                        onChange: this.props.change })
                 ),
                 _react2.default.createElement(
                     'section',
@@ -744,7 +764,8 @@ var Listings = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'results' },
-                        '390 Results Found'
+                        this.props.globalState.filteredData.length,
+                        ' Results Found'
                     ),
                     _react2.default.createElement(
                         'div',
@@ -768,8 +789,10 @@ var Listings = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'view' },
-                            _react2.default.createElement('i', { className: 'fas fa-list-ul' }),
-                            _react2.default.createElement('i', { className: 'fas fa-th' })
+                            _react2.default.createElement('i', { className: 'fas fa-list-ul',
+                                onClick: this.props.changeView.bind(null, "rowGrid") }),
+                            _react2.default.createElement('i', { className: 'fas fa-th',
+                                onClick: this.props.changeView.bind(null, "boxGrid") })
                         )
                     )
                 ),
@@ -909,11 +932,13 @@ var App = function (_Component) {
             filteredData: _listingsData2.default,
             populateFormsData: [],
             sortBy: 'priceDsc',
-            view: 'rowGrid'
+            view: 'boxGrid',
+            search: ''
         };
         _this.change = _this.change.bind(_this);
         _this.filteredData = _this.filteredData.bind(_this);
         _this.populateForms = _this.populateForms.bind(_this);
+        _this.changeView = _this.changeView.bind(_this);
         return _this;
     }
 
@@ -928,6 +953,13 @@ var App = function (_Component) {
             this.setState(_defineProperty({}, name, value), function () {
                 console.log(_this2.state);
                 _this2.filteredData();
+            });
+        }
+    }, {
+        key: 'changeView',
+        value: function changeView(viewName) {
+            this.setState({
+                view: viewName
             });
         }
     }, {
@@ -957,6 +989,40 @@ var App = function (_Component) {
             if (this.state.sortBy == 'priceAsc') {
                 newData = newData.sort(function (a, b) {
                     return a.price - b.price;
+                });
+            }
+
+            if (this.state.search != '') {
+                newData = newData.filter(function (item) {
+                    var city = item.city.toLowerCase();
+                    var searchText = _this3.state.search.toLowerCase();
+                    var n = city.match(searchText);
+
+                    if (n != null) {
+                        return true;
+                    }
+                });
+            }
+
+            if (this.state.elevator == true) {
+                newData = newData.filter(function (item) {
+                    return item.elevator == true;
+                });
+            }
+
+            if (this.state.swimmingPool == true) {
+                newData = newData.filter(function (item) {
+                    return item.swimmingPool == true;
+                });
+            }
+            if (this.state.finishedBasement == true) {
+                newData = newData.filter(function (item) {
+                    return item.finishedBasement == true;
+                });
+            }
+            if (this.state.gym == true) {
+                newData = newData.filter(function (item) {
+                    return item.gym == true;
                 });
             }
 
@@ -1025,7 +1091,8 @@ var App = function (_Component) {
                         populateAction: this.populateForms }),
                     _react2.default.createElement(_listings2.default, { change: this.change,
                         listingsData: this.state.filteredData,
-                        globalState: this.state })
+                        globalState: this.state,
+                        changeView: this.changeView })
                 )
             );
         }

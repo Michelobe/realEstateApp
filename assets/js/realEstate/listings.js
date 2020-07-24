@@ -111,12 +111,14 @@ export default class Listings extends Component {
             <section id = "listings">
 
                 <section className = "searchArea">
-                    <input type = "text" name = "search"></input>
+                    <input type = "text" 
+                           name = "search"
+                           onChange = {this.props.change}></input>
                 </section>
 
                 <section className = "sortByArea">
                     <div className = "results">
-                        390 Results Found
+                        {this.props.globalState.filteredData.length} Results Found
                     </div>
                     <div className = "sortOptions">
                         <select name = "sortBy" 
@@ -130,8 +132,10 @@ export default class Listings extends Component {
                             </option>
                         </select>
                         <div className = "view">
-                            <i className="fas fa-list-ul"></i>
-                            <i className="fas fa-th"></i>
+                            <i className="fas fa-list-ul"
+                               onClick = {this.props.changeView.bind(null, "rowGrid")}></i>
+                            <i className="fas fa-th"
+                               onClick = {this.props.changeView.bind(null, "boxGrid")}></i>
                         </div>
                     </div>
                 </section>

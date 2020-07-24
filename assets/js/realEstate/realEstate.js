@@ -27,12 +27,17 @@ class App extends Component {
             filteredData: listingsData,
             populateFormsData: [],
             sortBy: 'priceDsc',
-            view: 'rowGrid'
+            view: 'boxGrid',
+            search: ''
         };
         this.change = this.change.bind(this);
         this.filteredData = this.filteredData.bind(this);
         this.populateForms = this.populateForms.bind(this);
+        this.changeView = this.changeView.bind(this);
     }
+
+
+
     change(event){
         var name = event.target.name;
         var value = (event.target.type === 'checkbox') ? event.target.checked : event.target.value;
@@ -45,6 +50,17 @@ class App extends Component {
         });
 
     }
+
+
+
+    changeView(viewName){
+        this.setState({
+            view: viewName
+        });
+    }
+
+
+
     filteredData(){
         var newData = this.state.listingsData.filter((item) => {
             return item.price >= this.state.minPrice &&
@@ -75,10 +91,47 @@ class App extends Component {
             });
         }
 
+        if(this.state.search != ''){
+            newData = newData.filter((item) => {
+                var city = item.city.toLowerCase();
+                var searchText = this.state.search.toLowerCase();
+                var n = city.match(searchText);
+
+                if(n != null){
+                    return true;
+                }
+            });
+        }
+
+        if(this.state.elevator == true){
+            newData = newData.filter((item) => {
+                return item.elevator == true;
+            });
+        }
+
+        if(this.state.swimmingPool == true){
+            newData = newData.filter((item) => {
+                return item.swimmingPool == true;
+            });
+        }
+        if(this.state.finishedBasement == true){
+            newData = newData.filter((item) => {
+                return item.finishedBasement == true;
+            });
+        }
+        if(this.state.gym == true){
+            newData = newData.filter((item) => {
+                return item.gym == true;
+            });
+        }
+
         this.setState({
             filteredData : newData
         });
     }
+
+
+
     populateForms(){
         //city
         var cities = this.state.listingsData.map((item) => {
@@ -112,6 +165,9 @@ class App extends Component {
             }
         });
     }
+
+
+
     componentWillMount(){
         var listingsData = this.state.listingsData.sort((a, b) => {
             return (a.price - b.price);
@@ -121,6 +177,9 @@ class App extends Component {
             listingsData
         })
     }
+
+
+
     render () {
         return (
             <div>
@@ -131,7 +190,8 @@ class App extends Component {
                             populateAction = {this.populateForms} />
                     <Listings change = {this.change} 
                               listingsData = {this.state.filteredData}
-                              globalState = {this.state}  />
+                              globalState = {this.state} 
+                              changeView = {this.changeView} />
                 </section>
             </div>
         )
